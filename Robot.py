@@ -50,8 +50,8 @@ class Robot(object):
             self.epsilon = 0
         else:
             # TODO 2. Update parameters when learning
-            # self.epsilon = 1 - 1.0/math.exp(self.epsilon)
-            self.epsilon *= 0.9
+            self.epsilon = 1 - 1.0/math.exp(self.epsilon)
+            # self.epsilon *= 0.9
 
         return self.epsilon
 
