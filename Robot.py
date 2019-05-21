@@ -73,8 +73,7 @@ class Robot(object):
         # Qtable[state] ={'u':xx, 'd':xx, ...}
         # If Qtable[state] already exits, then do
         # not change it.
-        if state not in self.Qtable:
-            self.Qtable[state] = dict((action, 0.0) for action in self.maze.valid_actions)
+        self.Qtable.setdefault(state, {action: 0.0 for action in self.valid_actions})
 
     def choose_action(self):
         """
@@ -86,10 +85,7 @@ class Robot(object):
             # TODO 5. Return whether do random choice
             # hint: generate a random number, and compare
             # it with epsilon
-            if random.uniform(0, 1) < self.epsilon:
-                return True
-            else:
-                return False
+            return random.random() <= self.epsilon:
 
         if self.learning:
             if is_random_exploration():
